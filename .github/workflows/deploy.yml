@@ -5,15 +5,14 @@ on:
       - main
       - dev
 env:
-  MONGODB_DB_NAME: gha-demos
+  MONGODB_DB_NAME: gha-demo
 jobs:
   test:
     env:
-      MONGODB_CLUSTER_ADDRESS: action-cluster.ofvferb.mongodb.net
-      MONGODB_USERNAME: mongodb
-      MONGODB_PASSWORD: ssGLI7DbjNSToVJY
+      MONGODB_CLUSTER_ADDRESS: cluster0.ilgrrxy.mongodb.net
+      MONGODB_USERNAME: dbusername
+      MONGODB_PASSWORD: dbpassword
       PORT: 8080
-    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -30,11 +29,12 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: echo "..."
+        run: echo "MONGODB_USERNAME: $MONGODB_USERNAME, MONGODB_PASSWORD: $MONGODB_PASSWORD, MONGODB_CLUSTER_ADDRESS: $MONGODB_CLUSTER_ADDRESS, MONGODB_DB_NAME: $MONGODB_DB_NAME , PORT: $PORT "
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
         run: |        
-          echo "..."
+          echo " MONGODB_DB_NAME: ${{ env.MONGODB_DB_NAME}}"
+          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
