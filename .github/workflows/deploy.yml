@@ -9,10 +9,7 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: staging
-    if: ${{ matrix.environment == 'staging' }}
+    environment: staging
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.ilgrrxy.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
