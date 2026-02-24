@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [testing, development, staging, production]
+        environment: staging
     if: ${{ matrix.environment == 'staging' }}
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.ilgrrxy.mongodb.net
